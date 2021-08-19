@@ -1,5 +1,5 @@
 const BASE_URL = "https://api.themoviedb.org/3";
-export const BASE_IMG_URL = "https://image.tmdb.org/t/p/original";
+export const BASE_IMG_URL = "https://image.tmdb.org/t/p";
 
 export const fetchTrendingMovies = async () => {
   return await makeRequest("/trending/movie/week");
@@ -15,7 +15,8 @@ const makeRequest = async (path = "", params = "") => {
       `${BASE_URL}${path}?api_key=${process.env.REACT_APP_THEMOVIEDB_API_KEY}${params}&language=en-US&include_adult=false&include_video=false`
     );
     const data = await res.json();
-    return data;
+    if (data && data.status_code) throw data;
+    return data.results;
   } catch (error) {
     console.log("TMDB request error", error);
     return [];

@@ -1,21 +1,42 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 
-import MovieCard from "../../components/movieCard"
+import MovieCard from "../../components/movieCard";
 
-import { fetchPopularMovies, fetchTrendingMovies } from "../../lib/themoviedb"
+import { fetchPopularMovies, fetchTrendingMovies } from "../../lib/themoviedb";
 
 export default function Feed() {
-    const [popularMovies, setPopularMovies] = useState([])
-    const [trendingMovies, setTrendingMovies] = useState([])
+  const [popularMovies, setPopularMovies] = useState([]);
+  const [trendingMovies, setTrendingMovies] = useState([]);
 
-    
-    useEffect(() => {
-        
-    })
+  useEffect(() => {
+    const getMovies = async () => {
+      const pMovies = await fetchPopularMovies();
+      setPopularMovies(pMovies);
+      const tMovies = await fetchTrendingMovies();
+      setTrendingMovies(tMovies);
+    };
 
-    return (
-        <div>
-            
-        </div>
-    )
+    getMovies();
+  }, []);
+
+  //   console.log(popularMovies);
+  console.log(trendingMovies);
+  return (
+    <div>
+      <h2>Popular</h2>
+      <div className="grid grid-flow-col auto-cols-auto gap-2 justify-items-center mx-4">
+
+      {popularMovies.map((movie) => (
+          <MovieCard
+          key={movie.id}
+          title={movie.title}
+          posterPath={movie.poster_path}
+          rating={movie.vote_average}
+          year={movie.release_date}
+          />
+          ))}
+          </div>
+
+    </div>
+  );
 }

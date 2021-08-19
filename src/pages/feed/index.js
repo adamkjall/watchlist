@@ -24,7 +24,7 @@ export default function Feed() {
   return (
     <div>
       <h2>Popular</h2>
-      <div className="grid grid-flow-col auto-cols-auto gap-2 justify-items-center mx-4">
+      <div className="grid gap-2 justify-items-center mx-4" style={{gridTemplateColumns: "repeat(auto-fill, minmax(185px, 1fr))"}}>
 
       {popularMovies.map((movie) => (
           <MovieCard

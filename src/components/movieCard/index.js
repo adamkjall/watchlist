@@ -2,15 +2,15 @@ import { BASE_IMG_URL } from "../../lib/themoviedb";
 
 export default function MovieCard({ title, rating, posterPath }) {
   const posterURL = posterPath
-    ? `${BASE_IMG_URL}/w185${posterPath}`
+    ? `${BASE_IMG_URL}/w342${posterPath}`
     : `https://s3-ap-southeast-1.amazonaws.com/upcode/static/default-image.jpg`;
 
   return (
-    <div>
+    <div className="w-full">
       <img
         src={posterURL}
         alt={`Movie poster: ${title}`}
-        className="object-cover"
+        className="object-cover w-full"
       />
       <div>{rating}</div>
     </div>

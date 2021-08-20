@@ -33,6 +33,13 @@ const fetchNewMovies = async (page = 1) => {
   );
 };
 
+export const fetchMovieDetails = async (id) => {
+  return await makeRequest(
+    `/movie/${id}`,
+    "&append_to_response=videos,reviews"
+  );
+};
+
 export const fetchMovies = async (
   category = "Trending",
   page = 1,

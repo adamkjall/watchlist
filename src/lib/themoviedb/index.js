@@ -8,7 +8,7 @@ const makeRequest = async (path = "", params = "") => {
     );
     const data = await res.json();
     if (data && data.status_code) throw data;
-    return data.results;
+    return data;
   } catch (error) {
     console.log("TMDB request error", error);
     return [];
@@ -16,28 +16,32 @@ const makeRequest = async (path = "", params = "") => {
 };
 
 const fetchTrendingMovies = async (page = 1) => {
-  return await makeRequest("/trending/movie/week", `&page=${page}`);
+  const data = await makeRequest("/trending/movie/week", `&page=${page}`);
+  return data.results;
 };
 
 const fetchPopularMovies = async (page = 1) => {
-  return await makeRequest(
+  const data = await makeRequest(
     "/discover/movie",
     `&sort_by=popularity.desc&page=${page}`
   );
+  return data.results;
 };
 
 const fetchNewMovies = async (page = 1) => {
-  return await makeRequest(
+  const data = await makeRequest(
     "/discover/movie",
     `&sort_by=primary_release_date.desc&page=${page}`
   );
+  return data.results;
 };
 
 export const fetchMovieDetails = async (id) => {
-  return await makeRequest(
+  const data = await makeRequest(
     `/movie/${id}`,
     "&append_to_response=videos,reviews"
   );
+  return data;
 };
 
 export const fetchMovies = async (

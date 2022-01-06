@@ -1,6 +1,7 @@
 import { BrowserRouter as Router } from "react-router-dom";
 
-import MovieFeed from "./pages/movieFeed";
+import Header from "~/components/header";
+import MovieFeed from "~/pages/movieFeed";
 
 function App() {
   return (

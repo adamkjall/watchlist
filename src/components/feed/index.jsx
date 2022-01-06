@@ -1,5 +1,5 @@
-import MovieCard from "../card";
-import FeedSelection from "../../components/feedSelection";
+import MovieCard from "~/components/card";
+import FeedSelection from "~/components/feedSelection";
 
 const Feed = ({
   items,

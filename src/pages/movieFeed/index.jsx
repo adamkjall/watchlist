@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 
-import Feed from "../../components/feed"
+import Feed from "../../components/feed";
 import MovieOverview from "../../components/overviewModal";
 
 import { fetchMovies } from "../../lib/themoviedb";
 
-export default function MovieFeed() {
+const MovieFeed = () => {
   const [movies, setMovies] = useState([]);
   const [selection, setSelection] = useState("Trending");
   const [page, setPage] = useState(1);
@@ -15,6 +15,7 @@ export default function MovieFeed() {
   useEffect(() => {
     const getMovies = async () => {
       const fetchedMovies = await fetchMovies(selection, page, search);
+      console.log("fe", fetchedMovies);
       setMovies(fetchedMovies);
     };
 
@@ -28,8 +29,15 @@ export default function MovieFeed() {
   console.log("movieId", selectedMovieId);
   return (
     <>
-    <Feed items={movies} handleFilterChange={setSelection} loadMore={() => {}} openOverview={handleSelect}   />
-    {selectedMovieId && (
+      <Feed
+        items={movies}
+        handleFilterChange={setSelection}
+        loadMore={() => {}}
+        openOverview={handleSelect}
+        selection={selection}
+        setSelectedMovieId={setSelectedMovieId}
+      />
+      {selectedMovieId && (
         <MovieOverview
           movieId={selectedMovieId}
           handleClose={() => setSelectedMovieId(null)}
@@ -37,4 +45,6 @@ export default function MovieFeed() {
       )}
     </>
   );
-}
+};
+
+export default MovieFeed;

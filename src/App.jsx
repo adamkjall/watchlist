@@ -6,7 +6,8 @@ import MovieFeed from "~/pages/movieFeed";
 function App() {
   return (
     <Router>
-      <div className="App">
+      <div className="App bg-slate-600">
+        <Header />
         <MovieFeed />
       </div>
     </Router>

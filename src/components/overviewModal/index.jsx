@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { useHistory } from "react-router-dom";
 
-import { fetchMovieDetails, BASE_IMG_URL } from "../../lib/themoviedb";
+import { fetchMovieDetails, BASE_IMG_URL } from "~/lib/themoviedb";
 
 export default function MovieOverview({ movieId, handleClose }) {
   const [movie, setMovie] = useState(null);
@@ -37,52 +37,73 @@ export default function MovieOverview({ movieId, handleClose }) {
   console.log("movie id", movieId);
   console.log("movie details", movie);
   return (
-    <div className="fixed inset-0 bg-gray-600/75" onClick={clickOnOverlay}>
+    <div
+      className="fixed inset-0 bg-gray-600/75 flex justify-center md:px-16 md:py-12 overflow-scroll"
+      onClick={clickOnOverlay}
+    >
       <div
-        className="relative md:m-16 h-screen md:rounded-xl overflow-hidden"
+        className="relative text-shadow-lg min-h-full w-full max-w-screen-xl "
         ref={overviewRef}
       >
-        <button
+        {/* <button
           className="absolute top-3 left-3 font-bold text-white text-xl z-10"
           onClick={handleClose}
         >
           X
-        </button>
+        </button> */}
         {!movie ? (
           <h1>Loading</h1>
         ) : (
           <div
-            className="absolute inset-0 bg-cover bg-no-repeat bg-center text-white py-20"
+            className="bg-cover bg-no-repeat bg-center text-white p-6 md:rounded-xl mb-16 min-h-full bg-gray-700"
             style={{
-              backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(${BASE_IMG_URL}/original${movie?.backdrop_path})`,
+              backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${BASE_IMG_URL}/original${movie?.backdrop_path})`,
             }}
           >
-            <div className="flex">
-              <img src={`${BASE_IMG_URL}/w185${movie.poster_path}`} />
-              <div>
-                <h1 className="text-center text-4xl">
-                  {movie.title}{" "}
-                  <span className="text-3xl text-gray-300">
-                    ({movie.release_date.split("-")[0]})
-                  </span>
-                </h1>
-                <em className="block text-center text-xl mt-1">
-                  {movie.tagline}
-                </em>
-                <div className="flex justify-center space-x-2 mt-2 font-bold uppercase text-xs">
-                  {movie.genres.map((genre) => (
-                    <div key={genre.id}>{genre.name}</div>
-                  ))}
-                </div>
-                <div className="text-center text-2xl">
-                  <strong>{movie.vote_average}</strong>{" "}
-                  <span className="text-gray-300">({movie.vote_count})</span>
-                </div>
-                <p className="text-center mt-4 px-4 mx-auto max-w-xl">
-                  {movie.overview}
-                </p>
+            <header className="relative flex justify-between items-start">
+              <button
+                className="font-bold text-white text-center text-2xl rounded-full bg-black/30 hover:bg-white/50 w-12 h-12 flex-shrink-0"
+                onClick={handleClose}
+              >
+                X
+              </button>
+              <h1 className="text-center text-4xl px-10">
+                {movie.title}{" "}
+                <span className="text-3xl text-gray-300">
+                  ({movie.release_date.split("-")[0]})
+                </span>
+              </h1>
+              <div className="flex-shrink-0">
+                <strong className="text-3xl">{movie.vote_average}</strong>{" "}
+                <span className="text-gray-300">({movie.vote_count})</span>
               </div>
-            </div>
+            </header>
+            <body className="my-10">
+              <div className="flex items-start">
+                <img
+                  className="rounded-lg"
+                  src={`${BASE_IMG_URL}/w185${movie.poster_path}`}
+                />
+                <div className="px-4">
+                  <div className="flex justify-between items-center -mt-1">
+                    <div className="uppercase text-xs text-gray-300">
+                      {movie.genres.map((genre, index) => (
+                        <strong key={genre.id}>
+                          {genre.name}
+                          {movie.genres.length - 1 !== index && " / "}
+                        </strong>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="text-2xl mt-4">
+                    {movie.tagline && (
+                      <em className="text-xl">"{movie.tagline}"</em>
+                    )}
+                  </div>
+                  <p className="mt-4">{movie.overview}</p>
+                </div>
+              </div>
+            </body>
             <div></div>
           </div>
         )}

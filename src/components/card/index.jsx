@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-import { BASE_IMG_URL } from "../../lib/themoviedb";
+import { BASE_IMG_URL } from "~/lib/themoviedb";
 
 export default function MovieCard({
   id,

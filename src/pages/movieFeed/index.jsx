@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 
-import Feed from "../../components/feed";
-import MovieOverview from "../../components/overviewModal";
+import Feed from "~/components/feed";
+import MovieOverview from "~/components/overviewModal";
 
-import { fetchMovies } from "../../lib/themoviedb";
+import { fetchMovies } from "~/lib/themoviedb";
 
 const MovieFeed = () => {
   const [movies, setMovies] = useState([]);

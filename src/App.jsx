@@ -1,12 +1,12 @@
 import { BrowserRouter as Router } from "react-router-dom";
 
-import Feed from "./pages/feed";
+import MovieFeed from "./pages/movieFeed";
 
 function App() {
   return (
     <Router>
       <div className="App">
-        <Feed />
+        <MovieFeed />
       </div>
     </Router>
   );

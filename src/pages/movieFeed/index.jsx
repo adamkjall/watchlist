@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
+import { useParams } from "react-router-dom";
 
 import Feed from "~/components/feed";
 import MovieOverview from "~/components/overviewModal";
@@ -10,7 +11,7 @@ const MovieFeed = () => {
   const [selection, setSelection] = useState("Trending");
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
-  const [selectedMovieId, setSelectedMovieId] = useState(null);
+  const { movieId } = useParams();
 
   useEffect(() => {
     const getMovies = async () => {
@@ -21,28 +22,17 @@ const MovieFeed = () => {
 
     getMovies();
   }, [selection]);
+  console.log("heklo");
 
-  const handleSelect = (selection) => setSelection(selection);
-
-  console.log("movies", movies);
-  console.log("selection", selection);
-  console.log("movieId", selectedMovieId);
   return (
     <>
       <Feed
         items={movies}
         handleFilterChange={setSelection}
         loadMore={() => {}}
-        openOverview={handleSelect}
         selection={selection}
-        setSelectedMovieId={setSelectedMovieId}
       />
-      {selectedMovieId && (
-        <MovieOverview
-          movieId={selectedMovieId}
-          handleClose={() => setSelectedMovieId(null)}
-        />
-      )}
+      {movieId && <MovieOverview movieId={movieId} />}
     </>
   );
 };

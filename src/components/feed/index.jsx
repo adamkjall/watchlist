@@ -8,9 +8,8 @@ const Feed = ({
   openOverview,
   selection,
   handleSelection,
-  setSelectedMovieId,
 }) => (
-  <div className="relative m-4">
+  <div className="relative m-4 max-w-screen-xl mx-auto">
     <FeedSelection
       selections={["Trending", "Popular", "New"]}
       selected={selection}
@@ -28,7 +27,6 @@ const Feed = ({
           posterPath={movie.poster_path}
           rating={movie.vote_average}
           year={movie.release_date.split("-")[0]}
-          handleClick={() => setSelectedMovieId(movie.id)}
         />
       ))}
     </div>

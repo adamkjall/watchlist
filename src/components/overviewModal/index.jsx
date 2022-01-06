@@ -3,18 +3,19 @@ import { useHistory } from "react-router-dom";
 
 import { fetchMovieDetails, BASE_IMG_URL } from "~/lib/themoviedb";
 
-export default function MovieOverview({ movieId, handleClose }) {
+export default function MovieOverview({ movieId }) {
   const [movie, setMovie] = useState(null);
   const overviewRef = useRef();
   const history = useHistory();
+  const closeModal = () => history.goBack();
 
-  useEffect(() => {
-    history.listen((location, action) => {
-      if (action === "POP") {
-        handleClose();
-      }
-    });
-  }, []);
+  // useEffect(() => {
+  //   history.listen((location, action) => {
+  //     if (action === "POP") {
+  //       closeModal();
+  //     }
+  //   });
+  // }, [closeModal]);
 
   useEffect(() => {
     const fetchMovie = async () => {
@@ -31,7 +32,7 @@ export default function MovieOverview({ movieId, handleClose }) {
   const clickOnOverlay = (event) => {
     const isClickOnOverlay =
       overviewRef.current && !overviewRef.current.contains(event.target);
-    if (isClickOnOverlay) handleClose();
+    if (isClickOnOverlay) closeModal();
   };
 
   console.log("movie id", movieId);
@@ -63,7 +64,7 @@ export default function MovieOverview({ movieId, handleClose }) {
             <header className="relative flex justify-between items-start">
               <button
                 className="font-bold text-white text-center text-2xl rounded-full bg-black/30 hover:bg-white/50 w-12 h-12 flex-shrink-0"
-                onClick={handleClose}
+                onClick={closeModal}
               >
                 X
               </button>

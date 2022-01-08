@@ -8,29 +8,46 @@ import { fetchMovies } from "~/lib/themoviedb";
 
 const MovieFeed = () => {
   const [movies, setMovies] = useState([]);
-  const [selection, setSelection] = useState("Trending");
-  const [page, setPage] = useState(1);
-  const [search, setSearch] = useState("");
+  const [filter, setFilter] = useState({
+    selection: "Trending",
+    page: 1,
+    search: "",
+  });
+  const [loading, setLoading] = useState(false);
+
   const { movieId } = useParams();
 
   useEffect(() => {
     const getMovies = async () => {
-      const fetchedMovies = await fetchMovies(selection, page, search);
-      console.log("fe", fetchedMovies);
-      setMovies(fetchedMovies);
+      setLoading(true);
+      const fetchedMovies = await fetchMovies(filter.selection, filter.page);
+
+      if (filter.page === 1) setMovies(fetchedMovies);
+      else setMovies([...movies, ...fetchedMovies]);
+      setLoading(false);
     };
 
     getMovies();
-  }, [selection]);
-  console.log("heklo");
+  }, [filter]);
+
+  // TODO you can only filter on "NEW" "TRENSING" "POPULAR"
+  const handleFilterChange = (filter) => {
+    setFilter({
+      selection: filter,
+      page: 1,
+    });
+  };
+
+  const loadMore = () => setFilter({ ...filter, page: filter.page + 1 });
 
   return (
     <>
       <Feed
         items={movies}
-        handleFilterChange={setSelection}
-        loadMore={() => {}}
-        selection={selection}
+        handleFilterChange={handleFilterChange}
+        loadMore={loadMore}
+        selection={filter.selection}
+        loading={loading}
       />
       {movieId && <MovieOverview movieId={movieId} />}
     </>

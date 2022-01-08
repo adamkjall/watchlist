@@ -86,6 +86,7 @@ export default function MovieOverview({ movieId }) {
                 <img
                   className="rounded-lg"
                   src={`${BASE_IMG_URL}/w185${movie.poster_path}`}
+                  alt="Poster"
                 />
                 <div className="px-4">
                   <div className="flex justify-between items-center -mt-1">

@@ -6,6 +6,7 @@ import MoviePoster from "./MoviePoster";
 import MovieInfo from "./MovieInfo";
 import Reviews from "./Reviews";
 import Trailers from "./Trailers";
+import Genres from "./Genres";
 import { fetchMovieDetails } from "~/lib/themoviedb";
 
 export default function MovieOverview({ movieId }) {
@@ -33,8 +34,8 @@ export default function MovieOverview({ movieId }) {
       handleClose={closeModal}
     >
       <Header movie={movie} handleClose={closeModal} />
-
-      <div className="flex items-start my-10">
+      <Genres movie={movie} />
+      <div className="flex items-start my-5">
         <MoviePoster movie={movie} />
         <MovieInfo movie={movie} />
       </div>

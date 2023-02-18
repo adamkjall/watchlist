@@ -32,7 +32,7 @@ export default function Modal({
         ref={overviewRef}
       >
         <div
-          className="overflow-scroll bg-cover bg-no-repeat bg-center text-white p-6 md:rounded-xl mb-16 h-full bg-gray-700"
+          className="overflow-scroll bg-cover bg-no-repeat bg-center text-white p-4 md:rounded-xl mb-16 h-full bg-gray-700"
           style={{
             backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${BASE_IMG_URL}/original${backdropPath})`,
           }}

@@ -1,4 +1,5 @@
 import React from "react";
+
 import { BASE_IMG_URL } from "~/lib/themoviedb";
 import Avatar1 from "~/assets/avatar-1.svg";
 import Avatar2 from "~/assets/avatar-2.svg";
@@ -43,7 +44,9 @@ const Reviews = ({ reviews }) => {
               {new Date(review.created_at).toLocaleDateString()}
             </div>
           </div>
-          <div className="text-gray-400 leading-7">{review.content}</div>
+          <p className="text-gray-400 leading-relaxed whitespace-pre-wrap">
+            {review.content}
+          </p>
         </div>
       ))}
     </div>

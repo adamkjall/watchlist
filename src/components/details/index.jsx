@@ -4,6 +4,8 @@ import Modal from "./Modal";
 import Header from "./Header";
 import MoviePoster from "./MoviePoster";
 import MovieInfo from "./MovieInfo";
+import Reviews from "./Reviews";
+import Trailers from "./Trailers";
 import { fetchMovieDetails } from "~/lib/themoviedb";
 
 export default function MovieOverview({ movieId }) {
@@ -19,6 +21,8 @@ export default function MovieOverview({ movieId }) {
     fetchMovie();
   }, [movieId]);
 
+  console.log("movie", movie);
+
   // TODO if you start from a link to a movie and go back it would be nice if the modal closes instead
   const closeModal = () => history.goBack();
 
@@ -33,6 +37,10 @@ export default function MovieOverview({ movieId }) {
       <div className="flex items-start my-10">
         <MoviePoster movie={movie} />
         <MovieInfo movie={movie} />
+      </div>
+      <div className="grid gap-8">
+        <Trailers trailers={movie?.videos.results} />
+        <Reviews reviews={movie?.reviews} />
       </div>
     </Modal>
   );

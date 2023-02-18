@@ -17,8 +17,8 @@ const Feed = ({
       onSelect={handleFilterChange}
     />
     <div
-      className="grid gap-8 justify-items-center auto-rows-fr"
-      style={{ gridTemplateColumns: "repeat(auto-fill, minmax(185px, 1fr))" }}
+      className="grid gap-6 justify-items-center auto-rows-fr"
+      style={{ gridTemplateColumns: "repeat(auto-fill, minmax(225px, 1fr))" }}
     >
       {items.map((movie, index) => (
         <Card
@@ -36,8 +36,8 @@ const Feed = ({
       onClick={loadMore}
     >
       {loading ? (
-        <div class=" flex justify-center items-center">
-          <div class=" h-16 w-16 border-b-4 border-t-4 border-x-gray-500 rounded-full animate-spin"></div>
+        <div className=" flex justify-center items-center">
+          <div className=" h-16 w-16 border-b-4 border-t-4 border-x-gray-500 rounded-full animate-spin"></div>
         </div>
       ) : (
         <strong>LOAD MORE</strong>

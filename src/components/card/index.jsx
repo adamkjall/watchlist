@@ -15,9 +15,9 @@ export default function MovieCard({ id, title, rating, posterPath, year }) {
       to={`${match.url}/${id}`}
       className={`${
         loading ? "animate-pulse" : ""
-      } w-full h-full bg-slate-700 shadow-md`}
+      } w-full h-full bg-slate-700 shadow-md overflow-hidden rounded-md`}
     >
-      <div className="text-white cursor-pointer rounded-md overflow-hidden flex flex-col justify-between h-full">
+      <div className="text-white cursor-pointer flex flex-col justify-between h-full ">
         <img
           src={posterURL}
           alt={title}
@@ -26,7 +26,7 @@ export default function MovieCard({ id, title, rating, posterPath, year }) {
         />
         <div className="flex justify-between p-2 text-xl bg-slate-800">
           <span className="">{year}</span>
-          <span className="">{rating}</span>
+          <span className="">{rating.toFixed(1)}</span>
         </div>
       </div>
     </Link>

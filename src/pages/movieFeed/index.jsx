@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import Feed from "~/components/feed";
-import MovieOverview from "~/components/overviewModal";
+import MovieDetails from "~/components/details";
 
 import { fetchMovies } from "~/lib/themoviedb";
 
@@ -30,7 +30,7 @@ const MovieFeed = () => {
     getMovies();
   }, [filter]);
 
-  // TODO you can only filter on "NEW" "TRENSING" "POPULAR"
+  // TODO you can only filter on "NEW" "TRENDING" "POPULAR"
   const handleFilterChange = (filter) => {
     setFilter({
       selection: filter,
@@ -49,7 +49,7 @@ const MovieFeed = () => {
         selection={filter.selection}
         loading={loading}
       />
-      {movieId && <MovieOverview movieId={movieId} />}
+      {movieId && <MovieDetails movieId={movieId} />}
     </>
   );
 };

@@ -3,8 +3,7 @@ import { Link } from "react-router-dom";
 import Search from "~/components/search";
 
 const Header = () => (
-  <div className="flex justify-between text-white p-2">
-    <h1>HOME</h1>
+  <div className="flex justify-between text-gray-300 p-2">
     <div>
       <ul className="flex space-x-4">
         <li>

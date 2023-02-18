@@ -35,8 +35,7 @@ export default function MovieOverview({ movieId }) {
     >
       <Header movie={movie} handleClose={closeModal} />
       <Genres movie={movie} />
-      <div className="flex items-start my-5">
-        <MoviePoster movie={movie} />
+      <div className="flex items-start mt-5 mb-4 md:mb-12">
         <MovieInfo movie={movie} />
       </div>
       <div className="grid gap-8">

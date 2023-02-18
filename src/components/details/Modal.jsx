@@ -24,7 +24,7 @@ export default function Modal({
 
   return (
     <div
-      className="fixed inset-0 bg-gray-600/75 flex justify-center md:px-16 md:py-12"
+      className="fixed inset-0 bg-gray-900/75 flex justify-center px-4 md:px-16 md:py-12"
       onClick={clickOnOverlay}
     >
       <div

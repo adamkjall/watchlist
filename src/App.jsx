@@ -12,7 +12,7 @@ import Watchlist from "~/pages/watchlist";
 
 function App() {
   return (
-    <div className="App bg-slate-600 sm:px-2 md:px-6 min-h-screen">
+    <div className="App bg-slate-800 sm:px-2 md:px-6 min-h-screen">
       <Router>
         <Header />
         <Switch>

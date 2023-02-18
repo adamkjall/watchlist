@@ -17,7 +17,7 @@ const Feed = ({
       onSelect={handleFilterChange}
     />
     <div
-      className="grid gap-6 justify-items-center auto-rows-fr"
+      className="grid md:gap-6 justify-items-center auto-rows-fr"
       style={{ gridTemplateColumns: "repeat(auto-fill, minmax(225px, 1fr))" }}
     >
       {items.map((movie, index) => (

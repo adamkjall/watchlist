@@ -44,6 +44,14 @@ export const fetchMovieDetails = async (id) => {
   return data;
 };
 
+export const searchAPI = async (query, page = 1) => {
+  const data = await makeRequest(
+    `/search/multi`,
+    `&append_to_response=videos,reviews&query=${query}&=page${page}`
+  );
+  return data.results;
+};
+
 export const fetchMovies = async (
   category = "Trending",
   page = 1,
@@ -56,6 +64,8 @@ export const fetchMovies = async (
       return await fetchPopularMovies(page);
     case "New":
       return await fetchNewMovies(page);
+    case "Search":
+      return await searchAPI(query, page);
     default:
       return await fetchPopularMovies(page);
   }

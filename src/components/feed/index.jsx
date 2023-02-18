@@ -22,12 +22,12 @@ const Feed = ({
     >
       {items.map((movie, index) => (
         <Card
-          key={movie.id}
+          key={movie.id + "-" + index}
           id={movie.id}
           title={movie.title}
           posterPath={movie.poster_path}
           rating={movie.vote_average}
-          year={movie.release_date.split("-")[0]}
+          year={movie.release_date ? movie?.release_date.split("-")[0] : null}
         />
       ))}
     </div>

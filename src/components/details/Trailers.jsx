@@ -5,6 +5,7 @@ const Trailers = ({ trailers }) => {
     <div className="grid gap-4 grid-flow-col">
       {trailers
         .filter((t) => t.type === "Trailer")
+        .slice(0, 2)
         .map((trailer) => (
           <div key={trailer.id} className="card">
             <iframe

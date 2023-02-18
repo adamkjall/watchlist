@@ -1,10 +1,11 @@
+import { useMemo } from "react";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation, useHistory } from "react-router-dom";
 
 import Feed from "~/components/feed";
 import MovieDetails from "~/components/details";
 
-import { fetchMovies } from "~/lib/themoviedb";
+import { fetchMovies, searchAPI } from "~/lib/themoviedb";
 
 const MovieFeed = () => {
   const [movies, setMovies] = useState([]);
@@ -14,13 +15,18 @@ const MovieFeed = () => {
     search: "",
   });
   const [loading, setLoading] = useState(false);
-
+  const { search } = useLocation();
+  const history = useHistory();
   const { movieId } = useParams();
 
   useEffect(() => {
     const getMovies = async () => {
       setLoading(true);
-      const fetchedMovies = await fetchMovies(filter.selection, filter.page);
+      const fetchedMovies = await fetchMovies(
+        filter.selection,
+        filter.page,
+        filter.search
+      );
 
       if (filter.page === 1) setMovies(fetchedMovies);
       else setMovies([...movies, ...fetchedMovies]);
@@ -30,11 +36,18 @@ const MovieFeed = () => {
     getMovies();
   }, [filter]);
 
+  useEffect(() => {
+    const searchQuery = search.split("=")[1];
+
+    if (searchQuery?.length > 1) handleFilterChange("Search", searchQuery);
+  }, [search]);
+
   // TODO you can only filter on "NEW" "TRENDING" "POPULAR"
-  const handleFilterChange = (filter) => {
+  const handleFilterChange = (selection, search = "") => {
     setFilter({
-      selection: filter,
+      selection: selection,
       page: 1,
+      search,
     });
   };
 

@@ -28,7 +28,7 @@ export default function MovieCard({ id, title, rating, posterPath, year }) {
           <span className="">{year}</span>
           <div className="flex gap-1">
             <img src={Star} className="w-4" />
-            <span className="">{rating.toFixed(1)}</span>
+            <span className="">{rating?.toFixed(1)}</span>
           </div>
         </div>
       </div>

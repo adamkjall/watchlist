@@ -12,9 +12,9 @@ import Watchlist from "~/pages/watchlist";
 
 function App() {
   return (
-    <div className="App bg-slate-800 sm:px-2 md:px-6 min-h-screen">
+    <div className="App bg-slate-800 min-h-screen relative">
       <Router>
-        <Header />
+        {/* <Header /> */}
         <Switch>
           <Route exact path="/">
             <Redirect to="/movies" />

@@ -3,7 +3,14 @@ import { Link, useRouteMatch } from "react-router-dom";
 import Star from "~/assets/star.svg";
 import { BASE_IMG_URL } from "~/lib/themoviedb";
 
-export default function MovieCard({ id, title, rating, posterPath, year }) {
+export default function MovieCard({
+  id,
+  title,
+  rating,
+  posterPath,
+  year,
+  type,
+}) {
   const [loading, setLoading] = useState(true);
   const match = useRouteMatch();
   const posterURL = posterPath
@@ -12,7 +19,7 @@ export default function MovieCard({ id, title, rating, posterPath, year }) {
 
   return (
     <Link
-      to={`${match.url}/${id}`}
+      to={{ pathname: `${match.url}/${id}`, state: type }}
       className={`${
         loading ? "animate-pulse" : ""
       } w-full h-full bg-slate-700 shadow-md overflow-hidden md:rounded-md`}

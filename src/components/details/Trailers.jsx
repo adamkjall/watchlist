@@ -2,7 +2,7 @@ import React from "react";
 
 const Trailers = ({ trailers }) => {
   return (
-    <div className="grid gap-4 grid-flow-col">
+    <div className="grid gap-4 grid-flow-row md:grid-flow-col">
       {trailers
         .filter((t) => t.type === "Trailer")
         .slice(0, 2)

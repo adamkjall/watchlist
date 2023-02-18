@@ -36,9 +36,9 @@ const fetchNewMovies = async (page = 1) => {
   return data.results;
 };
 
-export const fetchMovieDetails = async (id) => {
+export const fetchDetails = async (id, type = "movie") => {
   const data = await makeRequest(
-    `/movie/${id}`,
+    `/${type}/${id}`,
     "&append_to_response=videos,reviews"
   );
   return data;

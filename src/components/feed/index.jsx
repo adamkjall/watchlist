@@ -26,8 +26,9 @@ const Feed = ({
           id={movie.id}
           title={movie.title}
           posterPath={movie.poster_path}
-          rating={movie.vote_average}
+          rating={movie?.vote_average}
           year={movie.release_date ? movie?.release_date.split("-")[0] : null}
+          type={movie?.media_type}
         />
       ))}
     </div>

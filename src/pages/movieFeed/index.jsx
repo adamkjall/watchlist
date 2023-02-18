@@ -5,7 +5,7 @@ import { useParams, useLocation, useHistory } from "react-router-dom";
 import Feed from "~/components/feed";
 import MovieDetails from "~/components/details";
 
-import { fetchMovies, searchAPI } from "~/lib/themoviedb";
+import { fetchMovies } from "~/lib/themoviedb";
 
 const MovieFeed = () => {
   const [movies, setMovies] = useState([]);
@@ -49,6 +49,7 @@ const MovieFeed = () => {
       page: 1,
       search,
     });
+    if (!search) history.replace();
   };
 
   const loadMore = () => setFilter({ ...filter, page: filter.page + 1 });

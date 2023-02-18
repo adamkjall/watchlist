@@ -10,6 +10,7 @@ const Search = () => {
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
       handleSearch();
+      setInput("");
     }
   };
 
@@ -25,7 +26,7 @@ const Search = () => {
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={handleKeyDown}
           className="placeholder:italic placeholder:text-slate-400 block bg-slate-900 w-full rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none sm:text-sm"
-          placeholder="Search for anything..."
+          placeholder="Search"
           type="text"
           name="search"
         />

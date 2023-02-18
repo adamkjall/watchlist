@@ -17,7 +17,10 @@ const Reviews = ({ reviews }) => {
   return (
     <div className="grid gap-8 overflow-y-scroll">
       {reviews.results.map((review) => (
-        <div className="p-6 bg-slate-900 rounded-lg" key={review.id}>
+        <div
+          className="p-6 bg-slate-900 rounded-lg w-full max-w-full"
+          key={review.id}
+        >
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center">
               <img
@@ -44,7 +47,7 @@ const Reviews = ({ reviews }) => {
               {new Date(review.created_at).toLocaleDateString()}
             </div>
           </div>
-          <p className="text-gray-400 leading-relaxed whitespace-pre-wrap">
+          <p className="text-gray-400 leading-relaxed whitespace-pre-line break-words w-full max-w-full">
             {review.content}
           </p>
         </div>

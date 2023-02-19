@@ -15,7 +15,7 @@ const Reviews = ({ reviews }) => {
     (e.target.src = AVATARS[Math.floor(Math.random() * AVATARS.length)]);
 
   return (
-    <div className="grid gap-8 overflow-y-scroll">
+    <div className="grid gap-8 overflow-y-auto">
       {reviews.results.map((review) => (
         <div
           className="p-6 bg-slate-900 rounded-lg w-full max-w-full"

@@ -16,9 +16,6 @@ function App() {
       <Router>
         {/* <Header /> */}
         <Switch>
-          <Route exact path="/">
-            <Redirect to="/movies" />
-          </Route>
           <Route path="/movies/:movieId?">
             <MovieFeed />
           </Route>
@@ -27,6 +24,9 @@ function App() {
           </Route>
           <Route path="/watchlist">
             <Watchlist />
+          </Route>
+          <Route exact path="/">
+            <Redirect to="/movies" />
           </Route>
         </Switch>
       </Router>

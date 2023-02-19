@@ -1,11 +1,7 @@
 import Search from "~/components/search";
 import useScrollDirection from "../../hooks/useScrollDirection";
 
-export default function FeedSelection({
-  selections = [],
-  selected = "Trending",
-  onSelect = () => {},
-}) {
+export default function FeedSelection({ selections, selected, onSelect }) {
   const scrollDirection = useScrollDirection();
 
   return (

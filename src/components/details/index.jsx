@@ -24,7 +24,7 @@ export default function MovieOverview({ movieId }) {
     fetchMovie();
   }, [movieId]);
 
-  // console.log("movie", movie);
+  console.log("movie", movie);
 
   // TODO if you start from a link to a movie and go back it would be nice if the modal closes instead
   const closeModal = () => history.goBack();

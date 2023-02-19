@@ -1,12 +1,19 @@
 import Search from "~/components/search";
+import useScrollDirection from "../../hooks/useScrollDirection";
 
 export default function FeedSelection({
   selections = [],
   selected = "Trending",
   onSelect = () => {},
 }) {
+  const scrollDirection = useScrollDirection();
+
   return (
-    <div className="relative flex md:justify-center items-center py-4 sticky top-0 z-10 bg-slate-900 px-4">
+    <div
+      className={`sticky flex md:justify-center items-center top-0 z-10 bg-slate-900 px-4 py-4 ransition-transform duration-500 ${
+        scrollDirection === "down" ? "-translate-y-full" : ""
+      }`}
+    >
       <div className="flex md:justify-center items-center space-x-4 text-gray-300 md:col-span-2">
         {selections.map((selection, index) => (
           <div

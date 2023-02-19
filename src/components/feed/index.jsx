@@ -1,5 +1,6 @@
 import Card from "~/components/card";
 import FeedSelection from "~/components/feedSelection";
+import Spinner from "~/components/Spinner";
 
 const Feed = ({
   items,
@@ -33,18 +34,7 @@ const Feed = ({
           />
         ))}
       </div>
-      <div
-        className="text-2xl text-white text-center py-10 bg-green-400 mt-8 cursor-pointer"
-        onClick={loadMore}
-      >
-        {loading ? (
-          <div className=" flex justify-center items-center">
-            <div className=" h-16 w-16 border-b-4 border-t-4 border-x-gray-500 rounded-full animate-spin"></div>
-          </div>
-        ) : (
-          <strong>LOAD MORE</strong>
-        )}
-      </div>
+      <div className="py-12">{loading && <Spinner />}</div>
     </div>
   </>
 );

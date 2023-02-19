@@ -1,5 +1,4 @@
-import { useMemo } from "react";
-import { useEffect, useState } from "react";
+import { useRef, useCallback, useEffect, useState } from "react";
 import { useParams, useLocation, useHistory } from "react-router-dom";
 
 import Feed from "~/components/feed";
@@ -18,6 +17,7 @@ const MovieFeed = () => {
   const { search } = useLocation();
   const history = useHistory();
   const { movieId } = useParams();
+  const loader = useRef(null);
 
   useEffect(() => {
     const getMovies = async () => {
@@ -32,8 +32,10 @@ const MovieFeed = () => {
       else setMovies([...movies, ...fetchedMovies]);
       setLoading(false);
     };
-
-    getMovies();
+    if (!loading) {
+      console.log("fetching");
+      getMovies();
+    }
   }, [filter]);
 
   useEffect(() => {
@@ -41,6 +43,23 @@ const MovieFeed = () => {
 
     if (searchQuery?.length > 1) handleFilterChange("Search", searchQuery);
   }, [search]);
+
+  const handleObserver = useCallback((entries) => {
+    const target = entries[0];
+    if (target.isIntersecting) {
+      setFilter({ ...filter, page: filter.page + 1 });
+    }
+  }, []);
+
+  useEffect(() => {
+    const option = {
+      root: null,
+      rootMargin: "160px",
+      threshold: 0,
+    };
+    const observer = new IntersectionObserver(handleObserver, option);
+    if (loader.current) observer.observe(loader.current);
+  }, [handleObserver]);
 
   // TODO you can only filter on "NEW" "TRENDING" "POPULAR"
   const handleFilterChange = (selection, search = "") => {
@@ -63,6 +82,7 @@ const MovieFeed = () => {
         selection={filter.selection}
         loading={loading}
       />
+      <div ref={loader} />
       {movieId && <MovieDetails movieId={movieId} />}
     </>
   );

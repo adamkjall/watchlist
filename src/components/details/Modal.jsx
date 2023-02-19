@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import Spinner from "./Spinner";
+import Spinner from "../Spinner";
 import { BASE_IMG_URL } from "~/lib/themoviedb";
 
 export default function Modal({

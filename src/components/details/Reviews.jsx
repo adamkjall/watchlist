@@ -1,5 +1,4 @@
 import React from "react";
-
 import { BASE_IMG_URL } from "~/lib/themoviedb";
 import Avatar1 from "~/assets/avatar-1.svg";
 import Avatar2 from "~/assets/avatar-2.svg";
@@ -18,15 +17,16 @@ const Reviews = ({ reviews }) => {
     <div className="grid gap-8 overflow-y-auto">
       {reviews.results.map((review) => (
         <div
-          className="p-6 bg-slate-900 rounded-lg w-full max-w-full"
+          className=" bg-slate-900 rounded-lg  max-w-full p-4 overflow-hidden"
           key={review.id}
         >
-          <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center justify-between mb-4 ">
             <div className="flex items-center">
               <img
                 src={`${BASE_IMG_URL}/w185${review.author_details.avatar_path}`}
                 onError={avatarFallback}
                 className="w-1/6 mr-4"
+                alt="profile"
               />
 
               <div>
@@ -35,7 +35,7 @@ const Reviews = ({ reviews }) => {
                 </div>
                 {review.author_details.rating && (
                   <div className="flex items-center">
-                    <img className="w-4 mr-" src={Star} />
+                    <img className="w-4 mr-" src={Star} alt="star" />
                     <div className="font-medium">
                       {review.author_details.rating}
                     </div>
@@ -43,11 +43,12 @@ const Reviews = ({ reviews }) => {
                 )}
               </div>
             </div>
-            <div className="text-gray-500 text-sm">
+            <div className="text-gray-500 text-sm whitespace-pre">
               {new Date(review.created_at).toLocaleDateString()}
             </div>
           </div>
-          <p className="text-gray-400 leading-relaxed whitespace-pre-line break-words w-full max-w-full">
+
+          <p className="text-gray-400 leading-relaxed break-words whitespace-pre-line">
             {review.content}
           </p>
         </div>

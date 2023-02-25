@@ -1,8 +1,7 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import Modal from "./Modal";
 import Header from "./Header";
-import MoviePoster from "./MoviePoster";
 import MovieInfo from "./MovieInfo";
 import Reviews from "./Reviews";
 import Trailers from "./Trailers";
@@ -22,7 +21,7 @@ export default function MovieOverview({ movieId }) {
     };
 
     fetchMovie();
-  }, [movieId]);
+  }, [movieId, location.state]);
 
   console.log("movie", movie);
 

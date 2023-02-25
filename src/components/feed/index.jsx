@@ -2,15 +2,7 @@ import Card from "~/components/card";
 import FeedSelection from "~/components/feedSelection";
 import Spinner from "~/components/Spinner";
 
-const Feed = ({
-  items,
-  handleFilterChange,
-  loadMore,
-  loading,
-  openOverview,
-  selection,
-  handleSelection,
-}) => (
+const Feed = ({ items, handleFilterChange, loading, selection }) => (
   <>
     <FeedSelection
       selections={["Trending", "Popular", "New"]}
